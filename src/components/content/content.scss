@@ -1,0 +1,23 @@
+.card {
+  border: solid 0.5px #eaeaea;
+  padding: 30px;
+  width: 800px;
+  margin: 50px;
+  margin-left: auto;
+  box-sizing: border-box;
+  background: #fff;
+  p {
+    margin-bottom: 10px;
+    font-size: 25px;
+    font-weight: 500;
+    line-height: 1.5em;
+  }
+  .value {
+    margin-left: 50px;
+    cursor: pointer;
+  }
+  .choices {
+    display: flex;
+    align-items: center;
+  }
+}

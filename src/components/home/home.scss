@@ -1,0 +1,19 @@
+.card-home {
+  border: solid 0.5px #eaeaea;
+  padding: 30px;
+  width: 800px;
+  margin: 50px auto;
+  box-sizing: border-box;
+  background: #fff;
+  .title {
+    font-size: 30px;
+    font-weight: 500;
+    margin-bottom: 20px;
+  }
+  .content {
+    font-size: 20px;
+    font-weight: 500;
+    line-height: 1.5em;
+    margin-bottom: 20px;
+  }
+}

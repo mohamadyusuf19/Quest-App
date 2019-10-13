@@ -1,0 +1,13 @@
+.card {
+  border: solid 0.5px #eaeaea;
+  padding: 30px;
+  width: 800px;
+  margin: 50px auto;
+  box-sizing: border-box;
+  background: #fff;
+  .flex-result {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+}

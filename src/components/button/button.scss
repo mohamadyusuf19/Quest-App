@@ -1,0 +1,18 @@
+.button {
+  height: 40px;
+  width: 200px;
+  padding: 8px;
+  box-sizing: border-box;
+  background: lightseagreen;
+  color: #fff;
+  text-align: center;
+  line-height: 20px;
+  text-decoration: none;
+  cursor: pointer;
+  float: right;
+  margin: 3px;
+}
+
+.button:hover {
+  background: green;
+}

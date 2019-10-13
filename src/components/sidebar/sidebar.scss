@@ -1,0 +1,39 @@
+.sidebar-container {
+  width: 300px;
+  display: inline-block;
+  margin-top: 50px;
+  margin-right: auto;
+  .kotak-salmon {
+    width: 50px;
+    height: 50px;
+    text-align: center;
+    line-height: 50px;
+    margin: 5px;
+    color: #fff;
+    cursor: pointer;
+    float: left;
+    text-decoration: none;
+    background: salmon;
+  }
+  .kotak-green {
+    width: 50px;
+    height: 50px;
+    text-align: center;
+    line-height: 50px;
+    margin: 5px;
+    color: #000;
+    cursor: pointer;
+    float: left;
+    text-decoration: none;
+    background: greenyellow;
+  }
+  .active {
+    background: lightblue;
+  }
+  .kotak-salmon:hover {
+    background: lightblue;
+  }
+  .kotak-green:hover {
+    background: lightblue;
+  }
+}
