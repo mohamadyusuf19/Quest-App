@@ -5,6 +5,7 @@ import HomeContainer from "../container/home/HomeContainer";
 import "./routes.scss";
 import ResultContainer from "../container/result/ResultContainer";
 import Header from "../components/header/Header";
+import Footer from "../components/footer/Footer";
 
 class Routes extends Component {
   // componentWillReceiveProps(prevState, prevProps) {
@@ -23,6 +24,7 @@ class Routes extends Component {
           <Route path="/result" component={ResultContainer} />
           <Route path="/:id" component={ContentContainer} />
         </Switch>
+        <Footer />
       </Router>
     );
   }

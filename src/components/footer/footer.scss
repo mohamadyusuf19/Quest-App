@@ -1,0 +1,35 @@
+.footer {
+  height: 80px;
+  background: transparent;
+  text-align: center;
+  line-height: 80px;
+  font-size: 20px;
+  width: 100%;
+  font-weight: bold;
+  position: absolute;
+  bottom: 0;
+  color: #fff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 28px;
+  box-sizing: border-box;
+  z-index: -100;
+  .author {
+    font-style: italic;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .footer {
+    position: relative;
+    p {
+      display: inline-block;
+      text-align: center;
+      margin: auto;
+    }
+    .author {
+      display: none;
+    }
+  }
+}

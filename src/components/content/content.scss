@@ -25,6 +25,11 @@
       display: flex;
       align-items: center;
     }
+    .foot-note {
+      margin-top: 10px;
+      font-size: 20px;
+      color: red;
+    }
   }
 }
 
@@ -33,14 +38,27 @@
     width: 100%;
     margin: 0px;
     display: block;
+    .choices {
+      margin-bottom: 10px;
+    }
     .card {
       width: 100%;
       margin: 0px;
       margin-top: 80px;
+      .value {
+        margin-left: 8px;
+        margin-bottom: 0px;
+      }
     }
     .right-side {
       width: 100%;
       margin: 50px 0px;
+    }
+    .foot-note {
+      display: none;
+    }
+    p {
+      font-size: 14px;
     }
   }
 }

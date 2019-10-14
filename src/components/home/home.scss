@@ -2,19 +2,21 @@
   border: solid 0.5px #eaeaea;
   padding: 30px;
   width: 800px;
-  margin: 50px auto;
+  margin: 200px auto;
   box-sizing: border-box;
   background: #fff;
   .title {
     font-size: 30px;
     font-weight: 500;
     margin-bottom: 20px;
+    font-family: monospace;
   }
   .content {
-    font-size: 20px;
+    font-size: 25px;
     font-weight: 500;
-    line-height: 1.5em;
+    line-height: 1.8em;
     margin-bottom: 20px;
+    font-family: monospace;
   }
 }
 
@@ -22,5 +24,11 @@
   .card-home {
     width: 100%;
     margin-top: 80px;
+    .title {
+      font-size: 22px;
+    }
+    .content {
+      font-size: 20px;
+    }
   }
 }

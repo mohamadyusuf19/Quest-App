@@ -6,7 +6,19 @@
   font-size: 30px;
   width: 100%;
   font-weight: bold;
-  border-bottom: solid 1px #333;
+  border-bottom: solid 1px #eaeaea;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  .logo {
+    height: 60px;
+    width: 60px;
+    margin-right: 10px;
+  }
+  p {
+    font-family: monospace;
+    font-style: italic;
+  }
 }
 
 @media screen and (max-width: 800px) {

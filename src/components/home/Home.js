@@ -7,10 +7,10 @@ const Home = ({ onClickStart }) => {
     <div className="card-home">
       <p className="title">Selamat Datang</p>
       <p className="content">
-        Silahkan berdoa sebelum memulai mengerjakan soal evaluasi. waktu akan
-        dihitung ketika anda memulai dengan menekan tombol start. Jawaban benar
-        akan di nilai 1, jawaban yang salah akan di nilai 0. Gunakan kejujuran
-        dalam mengerjakan evaluasi ini.
+        Silahkan berdoa sebelum memulai mengerjakan soal evaluasi. Waktu akan
+        dihitung ketika anda memulai dengan menekan tombol mulai. Jawaban yang
+        benar akan di nilai 1, jawaban yang salah akan di nilai 0. Gunakan
+        kejujuran dalam mengerjakan evaluasi ini.
       </p>
       <Button to="/1" buttonText="Mulai" onClickSoal={onClickStart} />
     </div>
