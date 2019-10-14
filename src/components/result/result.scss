@@ -1,4 +1,4 @@
-.card {
+.card-result {
   border: solid 0.5px #eaeaea;
   padding: 30px;
   width: 800px;
@@ -9,5 +9,22 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+  }
+  .text-result {
+    font-size: 24px;
+    margin-bottom: 10px;
+    font-weight: 700;
+  }
+  .value-result {
+    font-size: 40px;
+    margin-bottom: 10px;
+    font-weight: 700;
+    text-align: center;
+  }
+  .nilai {
+    font-size: 100px;
+    margin-bottom: 10px;
+    font-weight: bold;
+    text-align: center;
   }
 }

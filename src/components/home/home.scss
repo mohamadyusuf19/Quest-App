@@ -17,3 +17,9 @@
     margin-bottom: 20px;
   }
 }
+
+@media screen and (max-width: 800px) {
+  .card-home {
+    width: 400px;
+  }
+}

@@ -1,5 +1,11 @@
 /* eslint-disable no-fallthrough */
-import { PILIH_SOAL, PILIH_JAWABAN, TOTAL_NILAI } from "../types";
+import {
+  PILIH_SOAL,
+  PILIH_JAWABAN,
+  TOTAL_NILAI,
+  START_TIME,
+  END_TIME
+} from "../types";
 import { dataSoal } from "../../data/test";
 
 const initialState = {
@@ -27,7 +33,15 @@ const initialState = {
     ],
     jawaban: "C"
   },
-  answer: dataSoal
+  answer: dataSoal,
+  time: {
+    start: new Date(),
+    end: new Date(),
+    _detik: 1000,
+    _menit: 1000 * 60,
+    _jam: 1000 * 60 * 60,
+    _hari: 1000 * 60 * 60 * 24
+  }
 };
 
 export default (state = initialState, action) => {
@@ -64,6 +78,10 @@ export default (state = initialState, action) => {
           item.soal === action.payload.soal ? action.payload : item
         )
       };
+    case START_TIME:
+      return { ...state, time: action.payload };
+    case END_TIME:
+      return { ...state, time: { ...state.time, end: action.payload } };
     default:
       return state;
   }

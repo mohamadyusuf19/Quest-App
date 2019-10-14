@@ -1,10 +1,15 @@
+/* eslint-disable array-callback-return */
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import isEmpty from "lodash/isEmpty";
 import { Redirect } from "react-router-dom";
-import { pilihSoal, pilihJawaban } from "../../redux/actions/contentActions";
+import {
+  pilihSoal,
+  pilihJawaban,
+  endTime
+} from "../../redux/actions/contentActions";
 import Content from "../../components/content/Content";
 import { dataSoal } from "../../data/test";
+import moment from "moment";
 
 class ContentContainer extends Component {
   constructor() {
@@ -12,38 +17,36 @@ class ContentContainer extends Component {
     this.state = {
       checked: "",
       result: false,
-      completedAnswer: false
+      completedAnswer: false,
+      hari: null,
+      jam: null,
+      menit: null,
+      detik: null
     };
     this.onChangeChoices = this.onChangeChoices.bind(this);
     this.onClickSoal = this.onClickSoal.bind(this);
     this.onClickSidebar = this.onClickSidebar.bind(this);
   }
 
-  // static getDerivedStateFromProps(props, state) {
-  //   // console.log(this.props.match.params.id);
-  //   return dataSoal.map(item => {
-  //     const pos = props.content.answer.map(e => e.number).indexOf(item.soal);
-  //     console.log(pos, props);
-  //     if (pos !== -1) {
-  //       this.setState({ completedAnswer: true });
-  //     }
-  //   });
-  // }
-
   componentDidMount() {
     const { id } = this.props.match.params;
     // mengambil data soal berdasarkan id routes params
-    return dataSoal.map((item, idx) => {
+    dataSoal.map((item, idx) => {
       const index = idx + 1;
-      // membandingkan id routes params dengan index
-      if (index == id) {
+      if (index === parseInt(id)) {
         this.props.pilihSoal(item);
       }
     });
+    this.timer = setInterval(this.showRemaining.bind(this), 1000);
+  }
+
+  //clearing interval
+  componentWillUnmount() {
+    return clearInterval(this.timer);
   }
 
   componentDidUpdate(prevProps) {
-    //mengisi jawaban di setiap soal
+    //mengisi jawaban di setiap soal dan mengupdate ke state
     const { id } = this.props.match.params;
     const { answer } = this.props.content;
     if (id !== prevProps.match.params.id) {
@@ -55,6 +58,28 @@ class ContentContainer extends Component {
         }
       });
     }
+  }
+
+  //fungsi menghitung mundur waktu
+  showRemaining() {
+    const { time } = this.props.content;
+    var now = new Date();
+    var distance = time.end - now;
+    if (distance < 0) {
+      clearInterval(this.timer);
+      this.setState({ result: true });
+      this.props.endTime(time.end);
+    }
+    var hari = Math.floor(distance / time._hari);
+    var jam = Math.floor((distance % time._hari) / time._jam);
+    var menit = Math.floor((distance % time._jam) / time._menit);
+    var detik = Math.floor((distance % time._menit) / time._detik);
+    this.setState({
+      hari,
+      jam,
+      menit,
+      detik
+    });
   }
 
   //fungsi mengubah jawaban di radio button
@@ -85,24 +110,24 @@ class ContentContainer extends Component {
   //fungsi mengirim jawaban ke redux
   pilihJawaban() {
     const { id } = this.props.match.params;
+    const endTime = new Date();
     const page = parseInt(id);
     return dataSoal.map((item, idx) => {
       const index = idx + 1;
       if (index === page) {
-        // if (isEmpty(this.state.checked)) {
-        //   return null;
-        // } else {
         this.props.pilihJawaban({
           ...item,
           value: this.state.checked
         });
         if (page === dataSoal.length) {
           this.setState({ result: true });
+          this.props.endTime(moment(endTime).format());
         }
       }
     });
   }
 
+  //fungsi memilih soal berdasarkan nomor kotak
   onClickSidebar(item) {
     this.props.pilihSoal(item);
   }
@@ -110,7 +135,7 @@ class ContentContainer extends Component {
   render() {
     const { id } = this.props.match.params;
     const { data, answer } = this.props.content;
-    const { checked, result } = this.state;
+    const { checked, result, jam, menit, detik } = this.state;
     const page = parseInt(id) + 1;
     const checkedPage = parseInt(id);
     if (result) {
@@ -128,7 +153,9 @@ class ContentContainer extends Component {
         data={answer}
         onClickSidebar={item => this.onClickSidebar(item)}
         page={checkedPage}
-        onGoBack={() => this.props.history.goBack()}
+        jam={jam}
+        menit={menit}
+        detik={detik}
       />
     );
   }
@@ -140,5 +167,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { pilihSoal, pilihJawaban }
+  { pilihSoal, pilihJawaban, endTime }
 )(ContentContainer);

@@ -2,7 +2,7 @@ import React from "react";
 import "./home.scss";
 import Button from "../button/Button";
 
-const Home = () => {
+const Home = ({ onClickStart }) => {
   return (
     <div className="card-home">
       <p className="title">Selamat Datang</p>
@@ -12,7 +12,7 @@ const Home = () => {
         akan di nilai 1, jawaban yang salah akan di nilai 0. Gunakan kejujuran
         dalam mengerjakan evaluasi ini.
       </p>
-      <Button to="/1" buttonText="Mulai" />
+      <Button to="/1" buttonText="Mulai" onClickSoal={onClickStart} />
     </div>
   );
 };

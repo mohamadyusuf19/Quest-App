@@ -12,6 +12,7 @@ class ResultContainer extends Component {
     this.looping = this.looping.bind(this);
   }
 
+  //menghitung total nilai dan mengupdate ke state
   componentDidUpdate(prevProps) {
     if (this.props.content.answer !== prevProps.content.answer) {
       const { answer } = this.props.content;
@@ -27,10 +28,7 @@ class ResultContainer extends Component {
     this.looping();
   }
 
-  // componentDidUpdate(prevProps) {
-  //   console.log(prevProps);
-  // }
-
+  //mengganti nilai yang benar atau salah ke nilai yang ada didalam data
   looping() {
     const { answer } = this.props.content;
     if (answer.length > 0) {
@@ -45,11 +43,19 @@ class ResultContainer extends Component {
   }
 
   render() {
-    const { answer } = this.props.content;
+    const { answer, time } = this.props.content;
     const { nilai } = this.state;
     const nilaiPersentase = (nilai / answer.length) * 100;
     const salah = answer.length - nilai;
-    return <Result nilai={nilaiPersentase} benar={nilai} salah={salah} />;
+    return (
+      <Result
+        nilai={nilaiPersentase}
+        benar={nilai}
+        salah={salah}
+        startTime={time.start}
+        endTime={time.end}
+      />
+    );
   }
 }
 

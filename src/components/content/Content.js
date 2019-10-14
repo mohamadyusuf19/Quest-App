@@ -2,6 +2,7 @@ import React from "react";
 import "./content.scss";
 import Button from "../button/Button";
 import Sidebar from "../sidebar/Sidebar";
+import Time from "../time/Time";
 
 const Content = ({
   pilihan,
@@ -15,7 +16,9 @@ const Content = ({
   onClickSidebar,
   existenceAnswer,
   page,
-  onGoBack
+  jam,
+  menit,
+  detik
 }) => {
   return (
     <div className="flex">
@@ -41,13 +44,15 @@ const Content = ({
           onClickSoal={onClickSoal}
           buttonText={page === data.length ? "Selesai" : "Berikutnya"}
         />
-        <Button to={to} onClickSoal={onGoBack} buttonText="Kembali" />
       </div>
-      <Sidebar
-        data={data}
-        onClickSoal={item => onClickSidebar(item)}
-        existenceAnswer={existenceAnswer}
-      />
+      <div>
+        <Time jam={jam} menit={menit} detik={detik} />
+        <Sidebar
+          data={data}
+          onClickSoal={item => onClickSidebar(item)}
+          existenceAnswer={existenceAnswer}
+        />
+      </div>
     </div>
   );
 };

@@ -1,0 +1,21 @@
+.digital-timer {
+  background: #fff;
+  //   padding: 5px;
+  height: 60px;
+  width: 300px;
+  border: solid 1px #eaeaea;
+  text-align: center;
+  line-height: 60px;
+  border-radius: 3px;
+  //   box-sizing: border-box;
+  margin-top: 50px;
+  p {
+    font-size: 40px;
+    font-weight: 800;
+    text-align: center;
+  }
+}
+
+.red {
+  color: red;
+}
