@@ -1,4 +1,19 @@
+# Qi Platform
+
+### Qi Platform is an application to help teachers test students' abilities to online mode.
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+
+### Demo : [https://qi-platform.netlify.com](https://qi-platform.netlify.com/)
+
+### Tech Stack
+
+- handle some function using lodash
+- manipulate times using moment
+- styling components using node-sass (sass)
+- routes using react-router-dom
+- state management using redux
+- Javascript Library using react
 
 ## Available Scripts
 
