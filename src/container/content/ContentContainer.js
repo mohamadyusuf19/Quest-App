@@ -10,6 +10,7 @@ import {
 import Content from "../../components/content/Content";
 import { dataSoal } from "../../data/test";
 import moment from "moment";
+import isNaN from "lodash/isNaN";
 
 class ContentContainer extends Component {
   constructor() {
@@ -18,10 +19,10 @@ class ContentContainer extends Component {
       checked: "",
       result: false,
       completedAnswer: false,
-      hari: null,
-      jam: null,
-      menit: null,
-      detik: null
+      hari: 0,
+      jam: 0,
+      menit: 0,
+      detik: 0
     };
     this.onChangeChoices = this.onChangeChoices.bind(this);
     this.onClickSoal = this.onClickSoal.bind(this);
@@ -67,10 +68,14 @@ class ContentContainer extends Component {
     const { time } = this.props.content;
     var now = new Date();
     var distance = time.end - now;
+    if (isNaN(this.state.detik)) {
+      this.setState({ result: true });
+      return clearInterval(() => this.timer);
+    }
     if (distance < 0) {
-      clearInterval(this.timer);
       this.setState({ result: true });
       this.props.endTime(time.end);
+      return clearInterval(() => this.timer);
     }
     var hari = Math.floor(distance / time._hari);
     var jam = Math.floor((distance % time._hari) / time._jam);
