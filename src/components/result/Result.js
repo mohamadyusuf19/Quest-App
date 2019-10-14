@@ -13,16 +13,16 @@ const Result = ({ nilai, benar, salah, startTime, endTime }) => {
     <div className="card-result">
       <p className="value-result">Nilai</p>
       <p className="nilai">{nilai}</p>
-      <div className="flex-result">
-        <p className="text-result">Benar : {benar}</p>
-        <p className="text-result">Salah : {salah}</p>
-      </div>
       <p className="text-result">
         Mulai : {moment(startTime).format("dddd, Do MMMM YYYY, HH:mm:ss")} WIB
       </p>
       <p className="text-result">
         Selesai : {moment(endTime).format("dddd, Do MMMM YYYY, HH:mm:ss")} WIB
       </p>
+      <div className="flex-result">
+        <p className="text-result">Benar : {benar}</p>
+        <p className="text-result">Salah : {salah}</p>
+      </div>
     </div>
   );
 };
