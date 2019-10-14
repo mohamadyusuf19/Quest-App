@@ -5,31 +5,34 @@ import Home from "../../components/home/Home";
 import moment from "moment";
 
 class HomeContainer extends Component {
-  render() {
+  constructor() {
+    super();
+    this.setTime = this.setTime.bind(this);
+  }
+
+  setTime() {
     var date = new Date();
     // batas waktu awal sampai akhir dalam mengerjakan soal
-    var start = moment(date).format();
+    var start = date;
     var end = moment(date)
       .add(10, "minute")
-      .add(3, "seconds");
+      .add(2, "seconds");
     var _detik = 1000;
     var _menit = _detik * 60;
     var _jam = _menit * 60;
     var _hari = _jam * 24;
-    return (
-      <Home
-        onClickStart={() =>
-          this.props.startTime({
-            _hari,
-            _jam,
-            _menit,
-            _detik,
-            end,
-            start
-          })
-        }
-      />
-    );
+    this.props.startTime({
+      _hari,
+      _jam,
+      _menit,
+      _detik,
+      end,
+      start
+    });
+  }
+
+  render() {
+    return <Home onClickStart={this.setTime} />;
   }
 }
 
