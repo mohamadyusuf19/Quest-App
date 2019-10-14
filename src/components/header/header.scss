@@ -6,4 +6,12 @@
   font-size: 30px;
   width: 100%;
   font-weight: bold;
+  border-bottom: solid 1px #333;
+}
+
+@media screen and (max-width: 800px) {
+  .header {
+    position: fixed;
+    top: 0;
+  }
 }

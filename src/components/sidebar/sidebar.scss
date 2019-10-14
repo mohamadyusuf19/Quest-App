@@ -37,3 +37,11 @@
     background: lightblue;
   }
 }
+
+@media screen and (max-width: 800px) {
+  .sidebar-container {
+    margin: 30px auto;
+    width: 300px;
+    display: block;
+  }
+}

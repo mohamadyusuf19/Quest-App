@@ -19,3 +19,9 @@
 .red {
   color: red;
 }
+
+@media screen and (max-width: 800px) {
+  .digital-timer {
+    margin: auto;
+  }
+}

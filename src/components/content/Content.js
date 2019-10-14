@@ -45,7 +45,7 @@ const Content = ({
           buttonText={page === data.length ? "Selesai" : "Berikutnya"}
         />
       </div>
-      <div>
+      <div className="right-side">
         <Time jam={jam} menit={menit} detik={detik} />
         <Sidebar
           data={data}

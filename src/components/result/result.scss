@@ -28,3 +28,13 @@
     text-align: center;
   }
 }
+
+@media screen and (max-width: 800px) {
+  .card-result {
+    margin: 80px 0px;
+    width: 100%;
+    .flex-result {
+      display: block;
+    }
+  }
+}
