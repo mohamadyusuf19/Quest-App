@@ -28,6 +28,8 @@ class ContentContainer extends Component {
     this.onClickSidebar = this.onClickSidebar.bind(this);
   }
 
+  scrollToMyRef = () => window.scrollTo(0, 0);
+
   componentDidMount() {
     const { id } = this.props.match.params;
     // mengambil data soal berdasarkan id routes params
@@ -92,6 +94,7 @@ class ContentContainer extends Component {
   onClickSoal() {
     this.pilihSoal();
     this.pilihJawaban();
+    this.scrollToMyRef();
   }
 
   //fungsi untuk mengirim soal ke pages berikutnya
@@ -130,6 +133,7 @@ class ContentContainer extends Component {
   //fungsi memilih soal berdasarkan nomor kotak
   onClickSidebar(item) {
     this.props.pilihSoal(item);
+    this.scrollToMyRef();
   }
 
   render() {
