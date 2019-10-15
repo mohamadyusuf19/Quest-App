@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import isEmpty from "lodash/isEmpty";
 import { totalNilai } from "../../redux/actions/contentActions";
 import Result from "../../components/result/Result";
 
@@ -7,7 +8,8 @@ class ResultContainer extends Component {
   constructor() {
     super();
     this.state = {
-      nilai: 0
+      nilai: 0,
+      kosong: 0
     };
     this.looping = this.looping.bind(this);
   }
@@ -17,10 +19,14 @@ class ResultContainer extends Component {
     if (this.props.content.answer !== prevProps.content.answer) {
       const { answer } = this.props.content;
       let nilai = 0;
+      let kosong = 0;
       for (let i = 0; i < answer.length; i++) {
+        if (isEmpty(answer[i].value)) {
+          kosong += 1;
+        }
         nilai += answer[i].nilai;
       }
-      this.setState({ nilai: nilai });
+      this.setState({ nilai, kosong });
     }
   }
 
@@ -44,14 +50,16 @@ class ResultContainer extends Component {
 
   render() {
     const { answer, time } = this.props.content;
-    const { nilai } = this.state;
+    const { nilai, kosong } = this.state;
     const nilaiPersentase = (nilai / answer.length) * 100;
-    const salah = answer.length - nilai;
+    const salah = answer.length - nilai - kosong;
+    // console.log("kosong", this.state.kosong);
     return (
       <Result
         nilai={nilaiPersentase}
         benar={nilai}
         salah={salah}
+        kosong={kosong}
         startTime={time.start}
         endTime={time.end}
       />

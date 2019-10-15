@@ -44,9 +44,6 @@ const Content = ({
           onClickSoal={onClickSoal}
           buttonText={page === data.length ? "Selesai" : "Berikutnya"}
         />
-        <p className="foot-note">
-          catatan : untuk menyimpan jawaban silahkan tekan tombol hijau
-        </p>
       </div>
       <div className="right-side">
         <Time jam={jam} menit={menit} detik={detik} />

@@ -2,7 +2,7 @@
   border: solid 0.5px #eaeaea;
   padding: 30px;
   width: 800px;
-  margin: 200px auto;
+  margin: 100px auto;
   box-sizing: border-box;
   background: #fff;
   .title {
@@ -10,6 +10,7 @@
     font-weight: 500;
     margin-bottom: 20px;
     font-family: monospace;
+    text-align: center;
   }
   .content {
     font-size: 25px;
@@ -18,14 +19,26 @@
     margin-bottom: 20px;
     font-family: monospace;
   }
+  ul {
+    list-style-type: lower-alpha;
+    margin-left: 60px;
+    li {
+      font-size: 20px;
+      font-weight: 500;
+      line-height: 1.8em;
+      margin-bottom: 20px;
+      font-family: monospace;
+    }
+  }
 }
 
 @media screen and (max-width: 800px) {
   .card-home {
     width: 100%;
-    margin-top: 80px;
+    margin-top: 60px;
     .title {
       font-size: 22px;
+      text-align: left;
     }
     .content {
       font-size: 20px;

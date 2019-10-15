@@ -2,7 +2,7 @@
   border: solid 0.5px #eaeaea;
   padding: 30px;
   width: 800px;
-  margin: 200px auto;
+  margin: 100px auto;
   box-sizing: border-box;
   background: #fff;
   .flex-result {
@@ -10,35 +10,47 @@
     justify-content: space-between;
     align-items: center;
   }
+  .wrapper-nilai {
+    margin: 100px;
+    .value-result {
+      font-size: 40px;
+      margin-bottom: 10px;
+      font-weight: 700;
+      text-align: center;
+    }
+    .nilai {
+      font-size: 100px;
+      margin-bottom: 10px;
+      font-weight: bold;
+      text-align: center;
+    }
+  }
   .text-result {
     font-size: 24px;
     margin-bottom: 10px;
     font-weight: 700;
     line-height: 40px;
   }
-  .value-result {
-    font-size: 40px;
-    margin-bottom: 10px;
-    font-weight: 700;
-    text-align: center;
+  .green {
+    color: greenyellow;
   }
-  .nilai {
-    font-size: 100px;
-    margin-bottom: 10px;
-    font-weight: bold;
-    text-align: center;
+  .red {
+    color: red;
   }
 }
 
 @media screen and (max-width: 800px) {
   .card-result {
-    margin-top: 80px;
+    margin-top: 60px;
     width: 100%;
     .flex-result {
       display: block;
     }
     .text-result {
       font-size: 18px;
+    }
+    .wrapper-nilai {
+      margin: 0px;
     }
   }
 }

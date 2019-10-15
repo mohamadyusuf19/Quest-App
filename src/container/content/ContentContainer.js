@@ -8,7 +8,6 @@ import {
   endTime
 } from "../../redux/actions/contentActions";
 import Content from "../../components/content/Content";
-import { dataSoal } from "../../data/test";
 import moment from "moment";
 import isNaN from "lodash/isNaN";
 
@@ -33,8 +32,9 @@ class ContentContainer extends Component {
 
   componentDidMount() {
     const { id } = this.props.match.params;
+    const { answer } = this.props.content;
     // mengambil data soal berdasarkan id routes params
-    dataSoal.map((item, idx) => {
+    answer.map((item, idx) => {
       const index = idx + 1;
       if (index === parseInt(id)) {
         this.props.pilihSoal(item);
@@ -54,9 +54,9 @@ class ContentContainer extends Component {
     const { answer } = this.props.content;
     if (id !== prevProps.match.params.id) {
       return answer.map((item, idx) => {
-        if (item.soal === parseInt(id)) {
+        if (idx + 1 === parseInt(id)) {
           this.setState({ checked: item.value });
-        } else if (item.soal < parseInt(id)) {
+        } else if (idx + 1 < parseInt(id)) {
           this.setState({ checked: "" });
         }
       });
@@ -105,8 +105,9 @@ class ContentContainer extends Component {
   //fungsi untuk mengirim soal ke pages berikutnya
   pilihSoal() {
     const { id } = this.props.match.params;
+    const { answer } = this.props.content;
     const page = parseInt(id);
-    return dataSoal.map((item, idx) => {
+    return answer.map((item, idx) => {
       const index = idx;
       // membandingkan id routes params dengan index
       if (index === page) {
@@ -118,16 +119,18 @@ class ContentContainer extends Component {
   //fungsi mengirim jawaban ke redux
   pilihJawaban() {
     const { id } = this.props.match.params;
+    const { answer } = this.props.content;
     const endTime = new Date();
     const page = parseInt(id);
-    return dataSoal.map((item, idx) => {
+    return answer.map((item, idx) => {
       const index = idx + 1;
       if (index === page) {
         this.props.pilihJawaban({
           ...item,
-          value: this.state.checked
+          value: this.state.checked,
+          idx
         });
-        if (page === dataSoal.length) {
+        if (page === answer.length) {
           this.setState({ result: true });
           this.props.endTime(moment(endTime).format());
         }
@@ -152,7 +155,7 @@ class ContentContainer extends Component {
     }
     return (
       <Content
-        nomor={data.soal}
+        nomor={id}
         pertanyaan={data.pertanyaan}
         pilihan={data.pilihan}
         checked={checked}

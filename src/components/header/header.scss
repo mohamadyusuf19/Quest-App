@@ -25,5 +25,11 @@
   .header {
     position: fixed;
     top: 0;
+    height: 60px;
+    font-size: 25px;
+    .logo {
+      height: 40px;
+      width: 40px;
+    }
   }
 }

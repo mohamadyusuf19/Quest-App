@@ -10,6 +10,8 @@ class HomeContainer extends Component {
     this.setTime = this.setTime.bind(this);
   }
 
+  scrollToMyRef = () => window.scrollTo(0, 0);
+
   setTime() {
     var date = new Date();
     // batas waktu awal sampai akhir dalam mengerjakan soal
@@ -29,6 +31,7 @@ class HomeContainer extends Component {
       end,
       start
     });
+    this.scrollToMyRef();
   }
 
   render() {

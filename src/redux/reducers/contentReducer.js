@@ -7,6 +7,7 @@ import {
   END_TIME
 } from "../types";
 import { dataSoal } from "../../data/test";
+import { shuffle } from "../../utils/Function";
 
 const initialState = {
   data: {
@@ -33,7 +34,7 @@ const initialState = {
     ],
     jawaban: "C"
   },
-  answer: dataSoal,
+  answer: shuffle(dataSoal),
   time: {
     start: new Date(),
     end: new Date(),
@@ -49,19 +50,19 @@ export default (state = initialState, action) => {
     case PILIH_SOAL:
       return { ...state, data: action.payload };
     case PILIH_JAWABAN:
-      const { soal } = action.payload;
+      const { idx } = action.payload;
       const pos = state.answer
-        .map(function(e) {
-          return e.soal;
+        .map(function(e, index) {
+          return index;
         })
-        .indexOf(soal);
+        .indexOf(idx);
       // mengisi jawaban yang masih kosong
       if (pos === -1) {
         return { ...state, answer: [...state.answer, action.payload] };
       }
       // untuk mengganti object lama dengan object baru
       // mengganti jawaban
-      else if (pos + 1 === soal) {
+      else if (pos === idx) {
         return {
           ...state,
           answer: state.answer.map(item =>
