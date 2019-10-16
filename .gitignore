@@ -18,6 +18,8 @@
 .env.test.local
 .env.production.local
 
+.env # This contains secrets, don't store in source control
+
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*

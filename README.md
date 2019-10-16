@@ -12,6 +12,9 @@
 - routes using react-router-dom
 - state management using redux
 - Javascript Library using react
+- Hide secret id using dotenv
+- Analytics using react-ga
+- PWA website
 
 ## Feature
 
