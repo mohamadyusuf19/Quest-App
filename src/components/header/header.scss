@@ -1,23 +1,25 @@
 .header {
   height: 80px;
   background: #fff;
-  text-align: center;
+  text-align: left;
   line-height: 80px;
   font-size: 30px;
   width: 100%;
   font-weight: bold;
   border-bottom: solid 1px #eaeaea;
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
+  padding-left: 28px;
+  box-sizing: border-box;
   .logo {
-    height: 60px;
-    width: 60px;
+    height: 40px;
+    width: 40px;
     margin-right: 10px;
   }
   p {
-    font-family: monospace;
-    font-style: italic;
+    font-family: "Courier New", Courier, monospace;
+    // font-style: italic;
   }
 }
 

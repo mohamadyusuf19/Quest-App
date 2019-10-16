@@ -22,8 +22,8 @@ const Home = ({ onClickStart }) => {
             <li>Jawaban yang salah akan di nilai 0.</li>
             <li>Gunakan kejujuran dalam mengerjakan evaluasi ini.</li>
             <li>
-              Catatan : untuk menyimpan setiap jawaban silahkan tekan tombol
-              hijau.
+              Catatan : untuk menyimpan setiap jawaban yang diubah silahkan
+              tekan tombol hijau.
             </li>
           </ul>
         </div>

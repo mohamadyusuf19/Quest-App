@@ -40,14 +40,21 @@
     display: block;
     .choices {
       margin-bottom: 10px;
+      p {
+        font-size: 18px;
+      }
     }
     .card {
       width: 100%;
       margin: 0px;
       margin-top: 60px;
+      border-radius: 0px;
       .value {
         margin-left: 8px;
         margin-bottom: 0px;
+      }
+      p {
+        font-size: 18px;
       }
     }
     .right-side {
@@ -56,9 +63,6 @@
     }
     .foot-note {
       display: none;
-    }
-    p {
-      font-size: 12px;
     }
   }
 }

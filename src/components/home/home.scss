@@ -1,7 +1,7 @@
 .card-home {
   border: solid 0.5px #eaeaea;
   padding: 30px;
-  width: 800px;
+  width: 1000px;
   margin: 100px auto;
   box-sizing: border-box;
   background: #fff;
@@ -49,8 +49,15 @@
   .card-home {
     width: 100%;
     margin-top: 60px;
+    border-radius: 0px;
     .wrapper-home {
       display: block;
+      .content {
+        font-size: 18px;
+      }
+      li {
+        font-size: 16px;
+      }
       .wrapper-images {
         display: flex;
         justify-content: center;
