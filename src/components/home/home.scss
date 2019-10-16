@@ -5,6 +5,19 @@
   margin: 100px auto;
   box-sizing: border-box;
   background: #fff;
+  border-radius: 3px;
+  .wrapper-home {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .wrapper-images {
+      .images {
+        height: 300px;
+        width: 300px;
+        margin: auto;
+      }
+    }
+  }
   .title {
     font-size: 30px;
     font-weight: 500;
@@ -36,6 +49,21 @@
   .card-home {
     width: 100%;
     margin-top: 60px;
+    .wrapper-home {
+      display: block;
+      .wrapper-images {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        .images {
+          height: 200px;
+          width: 200px;
+          margin: 50px;
+          display: inline-block;
+        }
+      }
+    }
+
     .title {
       font-size: 22px;
       text-align: left;
