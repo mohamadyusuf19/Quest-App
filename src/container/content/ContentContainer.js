@@ -100,6 +100,14 @@ class ContentContainer extends Component {
     this.pilihSoal();
     this.pilihJawaban();
     this.scrollToMyRef();
+    this.finishTask();
+  }
+
+  //fungsi memilih soal berdasarkan nomor kotak
+  onClickSidebar(item) {
+    this.props.pilihSoal(item);
+    this.pilihJawaban();
+    this.scrollToMyRef();
   }
 
   //fungsi untuk mengirim soal ke pages berikutnya
@@ -120,7 +128,6 @@ class ContentContainer extends Component {
   pilihJawaban() {
     const { id } = this.props.match.params;
     const { answer } = this.props.content;
-    const endTime = new Date();
     const page = parseInt(id);
     return answer.map((item, idx) => {
       const index = idx + 1;
@@ -130,18 +137,24 @@ class ContentContainer extends Component {
           value: this.state.checked,
           idx
         });
+      }
+    });
+  }
+
+  finishTask() {
+    const { id } = this.props.match.params;
+    const { answer } = this.props.content;
+    const endTime = new Date();
+    const page = parseInt(id);
+    return answer.map((item, idx) => {
+      const index = idx + 1;
+      if (index === page) {
         if (page === answer.length) {
           this.setState({ result: true });
           this.props.endTime(moment(endTime).format());
         }
       }
     });
-  }
-
-  //fungsi memilih soal berdasarkan nomor kotak
-  onClickSidebar(item) {
-    this.props.pilihSoal(item);
-    this.scrollToMyRef();
   }
 
   render() {
@@ -151,7 +164,7 @@ class ContentContainer extends Component {
     const page = parseInt(id) + 1;
     const checkedPage = parseInt(id);
     if (result) {
-      return <Redirect to="/result" />;
+      return <Redirect to='/result' />;
     }
     return (
       <Content
@@ -159,11 +172,11 @@ class ContentContainer extends Component {
         pertanyaan={data.pertanyaan}
         pilihan={data.pilihan}
         checked={checked}
-        onChangeChoices={e => this.onChangeChoices(e)}
+        onChangeChoices={this.onChangeChoices}
         to={`/${page}`}
         onClickSoal={this.onClickSoal}
         data={answer}
-        onClickSidebar={item => this.onClickSidebar(item)}
+        onClickSidebar={this.onClickSidebar}
         page={checkedPage}
         jam={jam}
         menit={menit}
@@ -177,7 +190,6 @@ const mapStateToProps = state => ({
   content: state.content
 });
 
-export default connect(
-  mapStateToProps,
-  { pilihSoal, pilihJawaban, endTime }
-)(ContentContainer);
+export default connect(mapStateToProps, { pilihSoal, pilihJawaban, endTime })(
+  ContentContainer
+);
