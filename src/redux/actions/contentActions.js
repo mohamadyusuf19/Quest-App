@@ -3,30 +3,36 @@ import {
   PILIH_JAWABAN,
   TOTAL_NILAI,
   START_TIME,
-  END_TIME
-} from "../types";
+  END_TIME,
+  REVIEW_SOAL,
+} from '../types';
 
-export const pilihSoal = data => ({
+export const pilihSoal = (data) => ({
   type: PILIH_SOAL,
-  payload: data
+  payload: data,
 });
 
-export const pilihJawaban = data => ({
+export const pilihJawaban = (data) => ({
   type: PILIH_JAWABAN,
-  payload: data
+  payload: data,
 });
 
-export const totalNilai = data => ({
+export const totalNilai = (data) => ({
   type: TOTAL_NILAI,
-  payload: data
+  payload: data,
 });
 
-export const startTime = data => ({
+export const startTime = (data) => ({
   type: START_TIME,
-  payload: data
+  payload: data,
 });
 
-export const endTime = data => ({
+export const endTime = (data) => ({
   type: END_TIME,
-  payload: data
+  payload: data,
+});
+
+export const reviewSoal = (data) => ({
+  type: REVIEW_SOAL,
+  payload: data,
 });

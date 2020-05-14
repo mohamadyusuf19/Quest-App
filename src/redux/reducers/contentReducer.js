@@ -4,35 +4,36 @@ import {
   PILIH_JAWABAN,
   TOTAL_NILAI,
   START_TIME,
-  END_TIME
-} from "../types";
-import { dataSoal } from "../../data/test";
-import { shuffle } from "../../utils/Function";
+  END_TIME,
+  REVIEW_SOAL,
+} from '../types';
+import { dataSoal } from '../../data/test';
+import { shuffle } from '../../utils/Function';
 
 const initialState = {
   data: {
     soal: 1,
     pertanyaan:
-      "Harga bola dengan sepatu totalnya Rp. 150.000. Harga sepatu lebih besar Rp 100.000. Berapa harga bola ?",
+      'Harga bola dengan sepatu totalnya Rp. 150.000. Harga sepatu lebih besar Rp 100.000. Berapa harga bola ?',
     pilihan: [
       {
-        key: "A",
-        value: "Rp 50.000"
+        key: 'A',
+        value: 'Rp 50.000',
       },
       {
-        key: "B",
-        value: "Rp 75.000"
+        key: 'B',
+        value: 'Rp 75.000',
       },
       {
-        key: "C",
-        value: "Rp 25.000"
+        key: 'C',
+        value: 'Rp 25.000',
       },
       {
-        key: "D",
-        value: "Rp 150.000"
-      }
+        key: 'D',
+        value: 'Rp 150.000',
+      },
     ],
-    jawaban: "C"
+    jawaban: 'C',
   },
   answer: shuffle(dataSoal),
   time: {
@@ -41,8 +42,9 @@ const initialState = {
     _detik: 1000,
     _menit: 1000 * 60,
     _jam: 1000 * 60 * 60,
-    _hari: 1000 * 60 * 60 * 24
-  }
+    _hari: 1000 * 60 * 60 * 24,
+  },
+  review: false,
 };
 
 export default (state = initialState, action) => {
@@ -52,7 +54,7 @@ export default (state = initialState, action) => {
     case PILIH_JAWABAN:
       const { idx } = action.payload;
       const pos = state.answer
-        .map(function(e, index) {
+        .map(function (e, index) {
           return index;
         })
         .indexOf(idx);
@@ -65,9 +67,9 @@ export default (state = initialState, action) => {
       else if (pos === idx) {
         return {
           ...state,
-          answer: state.answer.map(item =>
+          answer: state.answer.map((item) =>
             item.soal === action.payload.soal ? action.payload : item
-          )
+          ),
         };
       } else {
         return { ...state, answer: [...state.answer, action.payload] };
@@ -75,14 +77,19 @@ export default (state = initialState, action) => {
     case TOTAL_NILAI:
       return {
         ...state,
-        answer: state.answer.map(item =>
+        answer: state.answer.map((item) =>
           item.soal === action.payload.soal ? action.payload : item
-        )
+        ),
       };
     case START_TIME:
       return { ...state, time: action.payload };
     case END_TIME:
       return { ...state, time: { ...state.time, end: action.payload } };
+    case REVIEW_SOAL:
+      return {
+        ...state,
+        review: action.payload,
+      };
     default:
       return state;
   }
