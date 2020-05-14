@@ -17,6 +17,7 @@ const Result = ({
   endTime,
   kosong,
   reviewSoal,
+  reset,
 }) => {
   const duration = moment.duration(moment(endTime).diff(moment(startTime)));
   return (
@@ -47,7 +48,10 @@ const Result = ({
           <p className='value-result'>Nilai</p>
           <p className='nilai'>{nilai}</p>
           <span className='review' onClick={reviewSoal}>
-            <Link to='/1'>See the result</Link>
+            <Link to='/1'>Review</Link>
+          </span>
+          <span className='reset' onClick={reset}>
+            Reset
           </span>
         </div>
       </div>

@@ -11,7 +11,8 @@
     align-items: center;
   }
   .wrapper-nilai {
-    margin: 100px;
+    margin: 90px;
+    white-space: nowrap;
     .value-result {
       font-size: 40px;
       margin-bottom: 10px;
@@ -37,6 +38,20 @@
         &:hover {
           text-decoration: underline;
         }
+      }
+    }
+
+    .reset {
+      color: red;
+      padding: 0.5rem 1rem;
+      margin-left: 1rem;
+      border: solid 2px red;
+      font-size: 2rem;
+      background-color: transparent;
+
+      &:hover {
+        cursor: pointer;
+        text-decoration: underline;
       }
     }
   }
