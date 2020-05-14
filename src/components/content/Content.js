@@ -1,8 +1,8 @@
-import React from "react";
-import "./content.scss";
-import Button from "../button/Button";
-import Sidebar from "../sidebar/Sidebar";
-import Time from "../time/Time";
+import React from 'react';
+import './content.scss';
+import Button from '../button/Button';
+import Sidebar from '../sidebar/Sidebar';
+import Time from '../time/Time';
 
 const Content = ({
   pilihan,
@@ -18,23 +18,29 @@ const Content = ({
   page,
   jam,
   menit,
-  detik
+  detik,
+  review,
 }) => {
   return (
-    <div className="flex">
-      <div className="card">
-        <p className="question">
+    <div className='flex'>
+      <div className='card'>
+        <p className='question'>
           {nomor}. {pertanyaan}
         </p>
+        {console.log(data[nomor - 1].value)}
         {pilihan.map((item, i) => (
-          <div key={i} className="choices">
+          <div key={i} className='choices'>
             <input
-              type="radio"
+              type='radio'
               value={item.key}
-              checked={checked === item.key}
+              checked={
+                !review
+                  ? checked === item.key
+                  : data[nomor - 1].value === item.key
+              }
               onChange={() => onChangeChoices(item.key)}
             />
-            <p className="value">
+            <p className='value'>
               {item.key}. {item.value}
             </p>
           </div>
@@ -42,14 +48,14 @@ const Content = ({
         <Button
           to={to}
           onClickSoal={onClickSoal}
-          buttonText={page === data.length ? "Selesai" : "Berikutnya"}
+          buttonText={page === data.length ? 'Selesai' : 'Berikutnya'}
         />
       </div>
-      <div className="right-side">
-        <Time jam={jam} menit={menit} detik={detik} />
+      <div className='right-side'>
+        {!review && <Time jam={jam} menit={menit} detik={detik} />}
         <Sidebar
           data={data}
-          onClickSoal={item => onClickSidebar(item)}
+          onClickSoal={(item) => onClickSidebar(item)}
           existenceAnswer={existenceAnswer}
         />
       </div>
