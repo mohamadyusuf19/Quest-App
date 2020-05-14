@@ -1,27 +1,28 @@
 /* eslint-disable array-callback-return */
-import React, { Component } from "react";
-import { connect } from "react-redux";
-import { Redirect } from "react-router-dom";
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { Redirect } from 'react-router-dom';
 import {
   pilihSoal,
   pilihJawaban,
-  endTime
-} from "../../redux/actions/contentActions";
-import Content from "../../components/content/Content";
-import moment from "moment";
-import isNaN from "lodash/isNaN";
+  endTime,
+  reviewSoal,
+} from '../../redux/actions/contentActions';
+import Content from '../../components/content/Content';
+import moment from 'moment';
+import isNaN from 'lodash/isNaN';
 
 class ContentContainer extends Component {
   constructor() {
     super();
     this.state = {
-      checked: "",
+      checked: '',
       result: false,
       completedAnswer: false,
       hari: 0,
       jam: 0,
       menit: 0,
-      detik: 0
+      detik: 0,
     };
     this.onChangeChoices = this.onChangeChoices.bind(this);
     this.onClickSoal = this.onClickSoal.bind(this);
@@ -51,13 +52,13 @@ class ContentContainer extends Component {
   componentDidUpdate(prevProps) {
     //mengisi jawaban di setiap soal dan mengupdate ke state
     const { id } = this.props.match.params;
-    const { answer } = this.props.content;
-    if (id !== prevProps.match.params.id) {
+    const { answer, review } = this.props.content;
+    if (!review && id !== prevProps.match.params.id) {
       return answer.map((item, idx) => {
         if (idx + 1 === parseInt(id)) {
           this.setState({ checked: item.value });
         } else if (idx + 1 < parseInt(id)) {
-          this.setState({ checked: "" });
+          this.setState({ checked: '' });
         }
       });
     }
@@ -65,35 +66,39 @@ class ContentContainer extends Component {
 
   //fungsi menghitung mundur waktu
   showRemaining() {
-    const { time } = this.props.content;
+    const { time, review } = this.props.content;
     var now = new Date();
     var distance = time.end - now;
-    if (isNaN(this.state.detik)) {
-      this.setState({ result: true });
-      return clearInterval(() => this.timer);
+    if (!review) {
+      if (isNaN(this.state.detik)) {
+        this.setState({ result: true });
+        return clearInterval(() => this.timer);
+      }
+      if (distance < 0) {
+        this.setState({ result: true });
+        this.props.endTime(time.end);
+        return clearInterval(() => this.timer);
+      }
+      var hari = Math.floor(distance / time._hari);
+      var jam = Math.floor((distance % time._hari) / time._jam);
+      var menit = Math.floor((distance % time._jam) / time._menit);
+      var detik = Math.floor((distance % time._menit) / time._detik);
+      this.setState({
+        hari,
+        jam,
+        menit,
+        detik,
+      });
     }
-    if (distance < 0) {
-      this.setState({ result: true });
-      this.props.endTime(time.end);
-      return clearInterval(() => this.timer);
-    }
-    var hari = Math.floor(distance / time._hari);
-    var jam = Math.floor((distance % time._hari) / time._jam);
-    var menit = Math.floor((distance % time._jam) / time._menit);
-    var detik = Math.floor((distance % time._menit) / time._detik);
-    this.setState({
-      hari,
-      jam,
-      menit,
-      detik
-    });
   }
 
   //fungsi mengubah jawaban di radio button
   onChangeChoices(e) {
-    this.setState({
-      checked: e
-    });
+    if (!this.props.content.review) {
+      this.setState({
+        checked: e,
+      });
+    }
   }
 
   onClickSoal() {
@@ -127,18 +132,20 @@ class ContentContainer extends Component {
   //fungsi mengirim jawaban ke redux
   pilihJawaban() {
     const { id } = this.props.match.params;
-    const { answer } = this.props.content;
+    const { answer, review } = this.props.content;
     const page = parseInt(id);
-    return answer.map((item, idx) => {
-      const index = idx + 1;
-      if (index === page) {
-        this.props.pilihJawaban({
-          ...item,
-          value: this.state.checked,
-          idx
-        });
-      }
-    });
+    if (!review) {
+      return answer.map((item, idx) => {
+        const index = idx + 1;
+        if (index === page) {
+          this.props.pilihJawaban({
+            ...item,
+            value: this.state.checked,
+            idx,
+          });
+        }
+      });
+    }
   }
 
   finishTask() {
@@ -152,6 +159,7 @@ class ContentContainer extends Component {
         if (page === answer.length) {
           this.setState({ result: true });
           this.props.endTime(moment(endTime).format());
+          this.props.reviewSoal(false);
         }
       }
     });
@@ -159,11 +167,11 @@ class ContentContainer extends Component {
 
   render() {
     const { id } = this.props.match.params;
-    const { data, answer } = this.props.content;
+    const { data, answer, review } = this.props.content;
     const { checked, result, jam, menit, detik } = this.state;
     const page = parseInt(id) + 1;
     const checkedPage = parseInt(id);
-    if (result) {
+    if (result && !review) {
       return <Redirect to='/result' />;
     }
     return (
@@ -181,15 +189,19 @@ class ContentContainer extends Component {
         jam={jam}
         menit={menit}
         detik={detik}
+        review={review}
       />
     );
   }
 }
 
-const mapStateToProps = state => ({
-  content: state.content
+const mapStateToProps = (state) => ({
+  content: state.content,
 });
 
-export default connect(mapStateToProps, { pilihSoal, pilihJawaban, endTime })(
-  ContentContainer
-);
+export default connect(mapStateToProps, {
+  pilihSoal,
+  pilihJawaban,
+  endTime,
+  reviewSoal,
+})(ContentContainer);
