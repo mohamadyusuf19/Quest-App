@@ -1,7 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import isEmpty from 'lodash/isEmpty';
-import { totalNilai, reviewSoal } from '../../redux/actions/contentActions';
+import {
+  totalNilai,
+  reviewSoal,
+  reset,
+} from '../../redux/actions/contentActions';
 import Result from '../../components/result/Result';
 
 class ResultContainer extends Component {
@@ -12,6 +16,7 @@ class ResultContainer extends Component {
       kosong: 0,
     };
     this.looping = this.looping.bind(this);
+    this.reset = this.reset.bind(this);
   }
 
   //menghitung total nilai dan mengupdate ke state
@@ -48,6 +53,12 @@ class ResultContainer extends Component {
     }
   }
 
+  reset(history) {
+    const { reset } = this.props;
+    reset();
+    history.push('/');
+  }
+
   render() {
     const { answer, time } = this.props.content;
     const { nilai, kosong } = this.state;
@@ -63,6 +74,7 @@ class ResultContainer extends Component {
         startTime={time.start}
         endTime={time.end}
         reviewSoal={() => this.props.reviewSoal(true)}
+        reset={() => this.reset(this.props.history)}
       />
     );
   }
@@ -72,6 +84,6 @@ const mapStateToProps = (state) => ({
   content: state.content,
 });
 
-export default connect(mapStateToProps, { totalNilai, reviewSoal })(
+export default connect(mapStateToProps, { totalNilai, reviewSoal, reset })(
   ResultContainer
 );
