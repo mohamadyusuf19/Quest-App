@@ -24,6 +24,21 @@
       font-weight: bold;
       text-align: center;
     }
+
+    .review {
+      padding: 0.5rem 1rem;
+      border: solid 2px green;
+      font-size: 2rem;
+
+      a {
+        text-decoration: unset;
+        color: inherit;
+
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+    }
   }
   .text-result {
     font-size: 24px;
