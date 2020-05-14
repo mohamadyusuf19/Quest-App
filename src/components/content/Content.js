@@ -52,7 +52,11 @@ const Content = ({
         />
       </div>
       <div className='right-side'>
-        {!review && <Time jam={jam} menit={menit} detik={detik} />}
+        {!review ? (
+          <Time jam={jam} menit={menit} detik={detik} />
+        ) : (
+          <Time review />
+        )}
         <Sidebar
           data={data}
           onClickSoal={(item) => onClickSidebar(item)}
