@@ -5,6 +5,7 @@ import {
   START_TIME,
   END_TIME,
   REVIEW_SOAL,
+  RESET,
 } from '../types';
 
 export const pilihSoal = (data) => ({
@@ -35,4 +36,8 @@ export const endTime = (data) => ({
 export const reviewSoal = (data) => ({
   type: REVIEW_SOAL,
   payload: data,
+});
+
+export const reset = () => ({
+  type: RESET,
 });

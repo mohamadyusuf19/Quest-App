@@ -6,6 +6,7 @@ import {
   START_TIME,
   END_TIME,
   REVIEW_SOAL,
+  RESET,
 } from '../types';
 import { dataSoal } from '../../data/test';
 import { shuffle } from '../../utils/Function';
@@ -89,6 +90,11 @@ export default (state = initialState, action) => {
       return {
         ...state,
         review: action.payload,
+      };
+    case RESET:
+      return {
+        ...state,
+        answer: shuffle(dataSoal),
       };
     default:
       return state;

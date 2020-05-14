@@ -4,3 +4,4 @@ export const TOTAL_NILAI = 'TOTAL_NILAI';
 export const START_TIME = 'START_TIME';
 export const END_TIME = 'END_TIME';
 export const REVIEW_SOAL = 'REVIEW_SOAL';
+export const RESET = 'RESET';
