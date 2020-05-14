@@ -1,15 +1,15 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
-import isEmpty from "lodash/isEmpty";
-import { totalNilai } from "../../redux/actions/contentActions";
-import Result from "../../components/result/Result";
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import isEmpty from 'lodash/isEmpty';
+import { totalNilai, reviewSoal } from '../../redux/actions/contentActions';
+import Result from '../../components/result/Result';
 
 class ResultContainer extends Component {
   constructor() {
     super();
     this.state = {
       nilai: 0,
-      kosong: 0
+      kosong: 0,
     };
     this.looping = this.looping.bind(this);
   }
@@ -38,11 +38,11 @@ class ResultContainer extends Component {
   looping() {
     const { answer } = this.props.content;
     if (answer.length > 0) {
-      return answer.map(item => {
+      return answer.map((item) => {
         const penilaian = item.jawaban === item.value ? 1 : 0;
         this.props.totalNilai({
           ...item,
-          nilai: penilaian
+          nilai: penilaian,
         });
       });
     }
@@ -62,16 +62,16 @@ class ResultContainer extends Component {
         kosong={kosong}
         startTime={time.start}
         endTime={time.end}
+        reviewSoal={() => this.props.reviewSoal(true)}
       />
     );
   }
 }
 
-const mapStateToProps = state => ({
-  content: state.content
+const mapStateToProps = (state) => ({
+  content: state.content,
 });
 
-export default connect(
-  mapStateToProps,
-  { totalNilai }
-)(ResultContainer);
+export default connect(mapStateToProps, { totalNilai, reviewSoal })(
+  ResultContainer
+);
