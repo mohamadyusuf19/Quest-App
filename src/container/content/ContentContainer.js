@@ -183,6 +183,8 @@ class ContentContainer extends Component {
         nomor={id}
         pertanyaan={data.pertanyaan}
         pilihan={data.pilihan}
+        jawaban={data.jawaban}
+        value={data.value}
         checked={checked}
         onChangeChoices={this.onChangeChoices}
         to={`/${page}`}

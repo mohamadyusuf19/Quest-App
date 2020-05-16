@@ -17,10 +17,40 @@
       font-weight: 500;
       line-height: 1.5em;
     }
+
     .value {
       margin-left: 50px;
+      display: inline-block;
+      padding: 4px 11px;
+      margin-bottom: 10px;
+      font-size: 25px;
+      font-weight: 500;
+      line-height: 1.5em;
       cursor: pointer;
     }
+
+    .--hover {
+      &:hover {
+        outline: 2px rgb(199, 199, 199) solid;
+      }
+    }
+
+    input[type='radio'] {
+      display: none;
+    }
+
+    input[type='radio']:checked + label {
+      outline: 2px grey solid;
+    }
+
+    .false {
+      outline: 2px red solid !important;
+    }
+
+    .true {
+      outline: 2px green solid !important;
+    }
+
     .choices {
       display: flex;
       align-items: center;

@@ -3,10 +3,13 @@ import './content.scss';
 import Button from '../button/Button';
 import Sidebar from '../sidebar/Sidebar';
 import Time from '../time/Time';
+import clsx from 'clsx';
 
 const Content = ({
   pilihan,
   pertanyaan,
+  jawaban,
+  value,
   nomor,
   onChangeChoices,
   checked,
@@ -31,6 +34,7 @@ const Content = ({
         {pilihan.map((item, i) => (
           <div key={i} className='choices'>
             <input
+              id={item.key}
               type='radio'
               value={item.key}
               checked={
@@ -40,9 +44,18 @@ const Content = ({
               }
               onChange={() => onChangeChoices(item.key)}
             />
-            <p className='value'>
+            {console.log(item)}
+            <label
+              htmlFor={item.key}
+              className={clsx(
+                'value',
+                !review && '--hover',
+                review && item.key === value && 'false',
+                review && item.key === jawaban && 'true'
+              )}
+            >
               {item.key}. {item.value}
-            </p>
+            </label>
           </div>
         ))}
         <Button
