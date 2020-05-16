@@ -44,7 +44,6 @@ const Content = ({
               }
               onChange={() => onChangeChoices(item.key)}
             />
-            {console.log(item)}
             <label
               htmlFor={item.key}
               className={clsx(

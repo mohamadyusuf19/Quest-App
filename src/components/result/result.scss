@@ -30,30 +30,30 @@
 
     .review {
       padding: 0.5rem 1rem;
-      border: solid 2px green;
+      background-color: green;
+      color: white;
       font-size: 2rem;
+      transition: background-color 0.3s;
 
       a {
         text-decoration: unset;
         color: inherit;
-
-        &:hover {
-          text-decoration: underline;
-        }
+      }
+      &:hover {
+        background-color: rgba(27, 156, 27, 0.801);
       }
     }
 
     .reset {
-      color: red;
       padding: 0.5rem 1rem;
       margin-left: 1rem;
-      border: solid 2px red;
+      background-color: red;
+      color: white;
       font-size: 2rem;
-      background-color: transparent;
-
+      transition: background-color 0.3s;
       &:hover {
         cursor: pointer;
-        text-decoration: underline;
+        background-color: rgba(255, 60, 60, 0.808);
       }
     }
   }
