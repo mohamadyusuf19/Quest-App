@@ -149,9 +149,13 @@ class ContentContainer extends Component {
   }
 
   finishTask() {
+    const { review, time } = this.props.content;
+    let endTime = time.end;
+    if (!review) {
+      endTime = new Date();
+    }
     const { id } = this.props.match.params;
     const { answer } = this.props.content;
-    const endTime = new Date();
     const page = parseInt(id);
     return answer.map((item, idx) => {
       const index = idx + 1;
