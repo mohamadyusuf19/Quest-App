@@ -11,7 +11,10 @@
     align-items: center;
   }
   .wrapper-nilai {
-    margin: 100px;
+    margin: 90px;
+    white-space: nowrap;
+    margin: 2rem;
+
     .value-result {
       font-size: 40px;
       margin-bottom: 10px;
@@ -23,6 +26,35 @@
       margin-bottom: 10px;
       font-weight: bold;
       text-align: center;
+    }
+
+    .review {
+      padding: 0.5rem 1rem;
+      background-color: green;
+      color: white;
+      font-size: 2rem;
+      transition: background-color 0.3s;
+
+      a {
+        text-decoration: unset;
+        color: inherit;
+      }
+      &:hover {
+        background-color: rgba(27, 156, 27, 0.801);
+      }
+    }
+
+    .reset {
+      padding: 0.5rem 1rem;
+      margin-left: 1rem;
+      background-color: red;
+      color: white;
+      font-size: 2rem;
+      transition: background-color 0.3s;
+      &:hover {
+        cursor: pointer;
+        background-color: rgba(255, 60, 60, 0.808);
+      }
     }
   }
   .text-result {
@@ -50,7 +82,7 @@
       font-size: 18px;
     }
     .wrapper-nilai {
-      margin: 0px;
+      margin: 2rem 0px;
     }
   }
 }

@@ -1,17 +1,22 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
-import isEmpty from "lodash/isEmpty";
-import { totalNilai } from "../../redux/actions/contentActions";
-import Result from "../../components/result/Result";
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import isEmpty from 'lodash/isEmpty';
+import {
+  totalNilai,
+  reviewSoal,
+  reset,
+} from '../../redux/actions/contentActions';
+import Result from '../../components/result/Result';
 
 class ResultContainer extends Component {
   constructor() {
     super();
     this.state = {
       nilai: 0,
-      kosong: 0
+      kosong: 0,
     };
     this.looping = this.looping.bind(this);
+    this.reset = this.reset.bind(this);
   }
 
   //menghitung total nilai dan mengupdate ke state
@@ -38,14 +43,20 @@ class ResultContainer extends Component {
   looping() {
     const { answer } = this.props.content;
     if (answer.length > 0) {
-      return answer.map(item => {
+      return answer.map((item) => {
         const penilaian = item.jawaban === item.value ? 1 : 0;
         this.props.totalNilai({
           ...item,
-          nilai: penilaian
+          nilai: penilaian,
         });
       });
     }
+  }
+
+  reset(history) {
+    const { reset } = this.props;
+    reset();
+    history.push('/');
   }
 
   render() {
@@ -62,16 +73,17 @@ class ResultContainer extends Component {
         kosong={kosong}
         startTime={time.start}
         endTime={time.end}
+        reviewSoal={() => this.props.reviewSoal(true)}
+        reset={() => this.reset(this.props.history)}
       />
     );
   }
 }
 
-const mapStateToProps = state => ({
-  content: state.content
+const mapStateToProps = (state) => ({
+  content: state.content,
 });
 
-export default connect(
-  mapStateToProps,
-  { totalNilai }
-)(ResultContainer);
+export default connect(mapStateToProps, { totalNilai, reviewSoal, reset })(
+  ResultContainer
+);
