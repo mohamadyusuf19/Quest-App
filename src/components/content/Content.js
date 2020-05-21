@@ -30,7 +30,6 @@ const Content = ({
         <p className='question'>
           {nomor}. {pertanyaan}
         </p>
-        {console.log(data[nomor - 1].value)}
         {pilihan.map((item, i) => (
           <div key={i} className='choices'>
             <input
