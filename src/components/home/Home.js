@@ -1,18 +1,20 @@
-import React from "react";
-import "./home.scss";
-import Button from "../button/Button";
-const images = require("../../assets/learning.png");
+import React, { useContext } from 'react';
+import './home.scss';
+import Button from '../button/Button';
+import { AuthContext } from '../../auth/AuthContext';
+const images = require('../../assets/learning.png');
 
 const Home = ({ onClickStart }) => {
+  const auth = useContext(AuthContext);
   return (
-    <div className="card-home">
+    <div className='card-home'>
       {/* <p className="title">Selamat Datang</p> */}
-      <div className="wrapper-home">
-        <div className="wrapper-images">
-          <img src={images} className="images" alt="images" />
+      <div className='wrapper-home'>
+        <div className='wrapper-images'>
+          <img src={images} className='images' alt='images' />
         </div>
         <div>
-          <p className="content">Aturan mengerjakan :</p>
+          <p className='content'>Aturan mengerjakan :</p>
           <ul>
             <li>
               Waktu akan dihitung ketika anda memulai dengan menekan tombol
@@ -28,7 +30,9 @@ const Home = ({ onClickStart }) => {
           </ul>
         </div>
       </div>
-      <Button to="/1" buttonText="Mulai" onClickSoal={onClickStart} />
+      {auth.isAuthenticated() && (
+        <Button to='/1' buttonText='Mulai' onClickSoal={onClickStart} />
+      )}
     </div>
   );
 };
