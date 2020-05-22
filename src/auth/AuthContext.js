@@ -1,6 +1,7 @@
 import React, { useState, useEffect, createContext } from 'react';
 import { useHistory } from 'react-router-dom';
 import { Auth } from './Auth';
+import Loading from '../components/loading/Loading';
 
 export const AuthContext = createContext();
 
@@ -18,7 +19,7 @@ const AuthContextProvider = ({ children }) => {
     );
   });
 
-  if (!tokenRenewalComplete) return 'loading';
+  if (!tokenRenewalComplete) return <Loading />;
 
   return <AuthContext.Provider value={auth}>{children}</AuthContext.Provider>;
 };
